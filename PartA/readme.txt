@@ -8,6 +8,6 @@ Tags Used:
 4. Form - Feedback form in defi.html
 5. Hyperlink - Linking to external webpage for charts
 6. Button - Buttons for submitting form
-7. Images - Eplainer and icon images provided
+7. Images -icon images provided
 
 All tags mentioned in the assignment have been used
