@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Feedback</title>
+  <style>
+    label {
+      float: left;
+      width: 150px;
+    }
+
+    #container {
+      width: 700px;
+      margin: auto;
+      background-color: beige;
+    }
+
+    main {
+      padding: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <main>
+      <h2>Feedback</h2>
+      <h3>Love something? Hate something? Let us know!</h3>
+      Note : Fields marked with an asterisk(*) are mandatory
+      <br />
+      <form action="./table.html" onsubmit="OnSubmit()">
+        <br />
+        <label>Title*:</label>
+        <input type="radio" name="title" id="miss" value="miss" required="required" />Miss
+        <input type="radio" name="title" id="mr" value="mr" required="required" />Mr.
+        <input type="radio" name="title" id="mrs" value="mrs" required="required" />Mrs. <br />
+        <br />
+
+        <label for="firstName">First Name*:</label>
+        <input type="text" name="firstName" id="firstName" required="required" placeholder="First Name"
+          onblur="validateInput(this, 1, 'FName')" />
+        <br />
+        <div id="errorMsgFName" style="display: none; color: red">
+          Invalid input for your first name. Only text values permitted
+        </div>
+        <br />
+        <label for="lastName">Last Name*:</label>
+        <input type="text" name="lastName" id="lastName" required="required" placeholder="Last Name"
+          onblur="validateInput(this, 1, 'LName')" />
+        <br />
+        <div id="errorMsgLName" style="display: none; color: red">
+          Invalid input for your last name. Only text values permitted
+        </div>
+        <br />
+        <label for="emailId">Email Id*:</label>
+        <input type="text" name="emailId" id="emailId" required="required" placeholder="yourname@domain.com"
+          onblur="validateInput(this, 2)" />
+        <br />
+        <div id="errorMsgEmailId" style="display: none; color: red">
+          Invalid input for your email id. Please enter email id in proper
+          format.
+        </div>
+        <br />
+        <label for="phoneNumber">Phone Number*:</label>
+        <input type="text" name="phoneNumber" id="phoneNumber" required="required" placeholder="xxx-xxx-xxxx"
+          onblur="validateInput(this, 3)" />
+        <br />
+        <br>
+        <label for="streetAddress1">Street Address 1*:</label>
+			  <input type="text" name="streetAddress1" id="streetAddress1" required = "required" placeholder="address" 
+        onblur="validateInput(this,6)"/>
+			  <br><br>
+        <div id="errorStreetAddress" style="display: none; color: red">
+          Invalid input for your street address.
+        </div>
+			  <label for="streetAddress2">Street Address 2:</label>
+			  <input type="text" name="streetAddress2" id="streetAddress2" placeholder="address" />
+			  <br>
+        <br>
+        <label for="city">City*:</label>
+			  <input type="text" name="city" id="city" required="required" placeholder="city"
+        onblur="validateInput(this,5)" />
+			  <br><br>
+        <div id="errorCity" style="display: none; color: red">
+          Invalid input for your city name.
+        </div>
+        
+        <div id="errorState" style="display: none; color: red">
+          Invalid input for your state.
+        </div>
+
+			  <label for="state">State*:</label>
+			  <input type="text" name="state" id="state" required = "required" placeholder="state" 
+        onblur="validateInput(this,7)"/>
+			  <br>
+
+        <div id="errorMsgPhone" style="display: none; color: red">
+          Invalid input for your phone number. Only numeric values are
+          permitted and in the requested format xxx-xxx-xxxx
+        </div>
+        <br />
+        <label for="zipcode">Zip Code*:</label>
+        <input type="text" name="zipcode" id="zipcode" required="required" placeholder="xxxxxx"
+          onblur="validateInput(this, 4)" />
+        <br />
+        <div id="errorMsgZipcode" style="display: none; color: red">
+          Invalid input for your Zipcode.
+        </div>
+        <br />
+        <label for="source">Beverages*:</label>
+
+        <select name="Menu" size="Number_of_options" onchange="{selectBeverages()}">
+          <option>Strawberry Banana Smoothie</option>
+          <option>Green Passion Smoothie</option>
+          <option>Mango Smoothie</option>
+          <option>Frozen Chocolate Cold Brew</option>
+          <option>Hazzlenut Coffee</option>
+        </select>
+        <br id="put" />
+        <br />
+        <label for="source">How did you hear*:</label>
+
+        <input type="checkbox" id="source" name="source" id="source" value="facebook" />
+        Facebook
+        <input type="checkbox" id="source" name="source" value="google" />
+        Google
+        <input type="checkbox" id="source" name="source" value="yelp" /> Yelp
+        <br /><br />
+
+        <label for="comments">Comments*:</label>
+        <textarea type="text" name="comments" id="comments" required="required" placeholder="Your Comments" rows="5"
+          cols="25"></textarea>
+        <br />
+        <input type="Submit" id="submit" />
+        <input type="Reset" />
+      </form>
+    </main>
+  </div>
+  <script>
+    var submit = document.querySelector("#submit");
+    var form = document.querySelector("form");
+    submit.addEventListener("submit", e => {
+      e.preventDefault();
+      var form = document.querySelector("form").elements;
+      console.log(form[0].value, e.target.value);
+    });
+
+    function OnSubmit() {
+      console.log(2);
+      console.log(form.value);
+    }
+
+    function selectBeverages() {
+      var removeDiv = document.querySelector("#options");
+      if (removeDiv) removeDiv.remove();
+      var selectedOption = document.querySelector("select");
+      var div = document.createElement("div");
+      div.setAttribute("id", "options");
+      var hr = document.createElement("hr");
+      var label1 = document.createElement("label");
+      var chkbox1 = document.createElement("input");
+      var br = document.createElement("br");
+      chkbox1.setAttribute("type", "checkbox");
+      chkbox1.setAttribute("name", "feature1");
+      chkbox1.setAttribute("id", "chk");
+      switch (selectedOption.value) {
+        case "Strawberry Banana Smoothie":
+          label1.textContent = "Extra milk $7";
+          chkbox1.value = "Extra milk $7";
+          break;
+        case "Green Passion Smoothie":
+          label1.textContent = "Extra Milk $9";
+          chkbox1.value = "Extra milk $9";
+          break;
+        case "Mango Smoothie":
+          label1.textContent = "Extra Milk $5";
+          chkbox1.value = "Extra milk $2";
+          break;
+        case "Frozen Chocolate Cold Brew":
+          label1.textContent = "Extra Milk $6";
+          chkbox1.value = "Extra milk $6";
+          break;
+        case "Hazzlenut Coffee":
+          label1.textContent = "Extra Milk $8";
+          chkbox1.value = "Extra milk $8";
+          break;
+      }
+      var txtField = "";
+      chkbox1.addEventListener("click", e => {
+        if (e.target.checked) {
+          console.log("jhb");
+          txtField = document.createElement("input");
+          txtField.setAttribute("type", "text");
+          txtField.setAttribute("name", "txt");
+          txtField.setAttribute("class", "txt");
+          div.append(txtField);
+        } else {
+          txtField = document.querySelectorAll(".txt");
+          txtField.forEach(element => {
+            element.style.display = "none";
+          });
+        }
+      });
+      var target = document.querySelector("#put");
+      label1.append(chkbox1);
+      div.appendChild(hr);
+      div.appendChild(label1);
+      div.appendChild(br);
+      target.parentNode.insertBefore(div, target.nextSibling);
+    }
+
+    function validateInput(object, type, nameType) {
+      var regExName = /^[a-zA-Z]+$/;
+      var regExEmail = /([\w\.]+)@([\w\.]+)\.(\w+)/;
+      var regExPhone = /\d{3}-?\d{3}-\d{4}$/;
+      var regExZipcode = /^\d{5}[-\s]?(?:\d{4})?$/;
+      var cityName = /^([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$/;
+      var state = /^([a-zA-Z]+|[a-zA-Z]+\s[a-zA-Z]+)$/;
+      var streetAddress1 = /[\w',-\\/.\s]/;
+      var name = "errorMsg" + nameType;
+      switch (type) {
+        case 1:
+          if (!object.value.trim().match(regExName)) {
+            object.style.border = "2px solid red";
+            document.getElementById(name).style.display = "block";
+            object.value = "";
+          } else {
+            object.style.border = "";
+            document.getElementById(name).style.display = "none";
+          }
+          break;
+        case 2:
+          if (!object.value.match(regExEmail)) {
+            object.style.border = "2px solid red";
+            document.getElementById("errorMsgEmailId").style.display =
+              "block";
+            object.value = "";
+          } else {
+            object.style.border = "";
+            document.getElementById("errorMsgEmailId").style.display = "none";
+          }
+          break;
+        case 3:
+          if (!object.value.match(regExPhone)) {
+            object.style.border = "2px solid red";
+            document.getElementById("errorMsgPhone").style.display = "block";
+            object.value = "";
+          } else {
+            object.style.border = "";
+            document.getElementById("errorMsgPhone").style.display = "none";
+          }
+          break;
+        case 4:
+          if (!object.value.match(regExZipcode)) {
+            object.style.border = "2px solid red";
+            document.getElementById("errorMsgZipcode").style.display =
+              "block";
+            object.value = "";
+          } else {
+            object.style.border = "";
+            document.getElementById("errorMsgZipcode").style.display = "none";
+          }
+          break;
+          case 5:
+          if (!object.value.match(cityName)) {
+            object.style.border = "2px solid red";
+            document.getElementById("errorCity").style.display =
+              "block";
+            object.value = "";
+          } else {
+            object.style.border = "";
+            document.getElementById("errorCity").style.display = "none";
+             
+          }
+          break;
+          case 6:
+          if (!object.value.match(streetAddress1)) {
+            object.style.border = "2px solid red";
+            document.getElementById("errorStreetAddress").style.display =
+              "block";
+            object.value = "";
+          } else {
+            object.style.border = "";
+            document.getElementById("errorStreetAddress").style.display = "none";
+             
+          }
+          break;
+          case 7:
+          if (!object.value.match(state)) {
+            object.style.border = "2px solid red";
+            document.getElementById("errorState").style.display =
+              "block";
+            object.value = "";
+          } else {
+            object.style.border = "";
+            document.getElementById("errorState").style.display = "none";
+             
+          }
+          break;
+      }
+    }
+  </script>
+</body>
+
+</html>
