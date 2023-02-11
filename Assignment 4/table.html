@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    table {
+      font-family: Arial, Helvetica, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>TABLE</h2>
+
+  <table id="companyTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email ID</th>
+        <th>Phone Number</th>
+        <th>Zip Code</th>
+        <th>Source</th>
+        <th>Orders</th>
+        <th>Comments</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+    <tfoot></tfoot>
+  </table>
+  <script>
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    console.log(params);
+    var tableRef = document
+      .getElementById("companyTable")
+      .getElementsByTagName("thead")[0];
+    var newRow = tableRef.insertRow(tableRef.rows.length);
+    var colCount = tableRef.rows[0].cells.length;
+    const {
+      title,
+      firstName,
+      lastName,
+      emailId,
+      phoneNumber,
+      Menu,
+      feature1,
+      feature2,
+      feature3,
+      source,
+      comments,
+      zipcode,
+      txt
+    } = params;
+    for (var i = 0; i < colCount; i++) {
+      var newCell = newRow.insertCell(i);
+      if (i == 0) {
+        var newText = document.createTextNode(
+          `${title} ${firstName} ${lastName}`
+        );
+        newCell.appendChild(newText);
+      } else if (i == 1) {
+        var newText = document.createTextNode(`${emailId}`);
+        newCell.appendChild(newText);
+      } else if (i == 2) {
+        var newText = document.createTextNode(`${phoneNumber}`);
+        newCell.appendChild(newText);
+      } else if (i == 3) {
+        var newText = document.createTextNode(`${zipcode}`);
+        newCell.appendChild(newText);
+      } else if (i == 4) {
+        var newText = document.createTextNode(`${source}`);
+        newCell.appendChild(newText);
+      } else if (i == 5) {
+        var newText = document.createTextNode(`${Menu}`);
+        var br = document.createElement("br");
+        var br1 = document.createElement("br");
+        var br2 = document.createElement("br");
+
+        var newText1 = document.createTextNode(`
+          ${feature1 ? feature1 : ""}`);
+        var newText2 = document.createTextNode(`
+          ${txt ? txt : ""}`);
+        var newText3 = document.createTextNode(`
+          ${feature3 ? feature3 : ""}`);
+        newCell.appendChild(newText);
+        newCell.appendChild(br);
+
+        newCell.appendChild(newText1);
+        newCell.appendChild(br1);
+
+        newCell.appendChild(newText2);
+        newCell.appendChild(br2);
+
+        newCell.appendChild(newText3);
+      } else if (i == 6) {
+        var newText = document.createTextNode(`${comments}`);
+        newCell.appendChild(newText);
+      }
+    }
+  </script>
+</body>
+
+</html>
